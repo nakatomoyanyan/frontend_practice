@@ -1,0 +1,28 @@
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+.header-list{
+    display: inline-block;
+}
+
+.header-list a{
+    padding: 0 20px 0 0;
+    text-decoration: none;
+    color: white;
+}
+
+.header-title {
+    padding: 30px 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+footer  {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
