@@ -30,5 +30,5 @@ taskSubmit.addEventListener('click',() => {
     //タスク入力フォームを初期化
     taskValue.value = '';
     taskDate.value = '';
-    taskImportance.value = '';
+    taskImportance.value = '高';
 })
