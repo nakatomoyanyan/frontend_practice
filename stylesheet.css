@@ -20,6 +20,14 @@ header {
     font-weight: bold;
 }
 
+.newtask {
+    border: solid;
+    border-color: #cccccc;
+    border-radius: 5px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
 footer  {
     background-color: #333;
     color: white;

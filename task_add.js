@@ -9,12 +9,8 @@ taskSubmit.addEventListener('click',() => {
     //タスクのフォーム作成
     let taskList = document.querySelector('.task_list');
     let newTask = document.createElement('div');
-    newTask.style.border = 'solid #cccccc';
-    newTask.style.borderRadius = '5px';
-    newTask.style.display = 'inline-block';//タスク名の長さに応じてタスクのフォームの大きさが変わる
+    newTask.classList.add('newtask');//クラス名を追加
     taskList.appendChild(newTask);
-    let nullPtag = document.createElement('p');//タスクのフォームを縦並びにする&フォーム同士に空白を開けるため
-    taskList.appendChild(nullPtag);
     //タスク名を追加
     let newTaskValue = document.createElement('p');
     newTaskValue.innerText = taskValue.value;
