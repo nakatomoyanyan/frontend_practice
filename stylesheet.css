@@ -33,4 +33,6 @@ footer {
   color: white;
   text-align: center;
   padding: 20px 0;
+  width: 100%;
+  margin-top: auto;
 }
