@@ -20,6 +20,23 @@ header {
   font-weight: bold;
 }
 
+form {
+  display: flex;
+  flex-direction: row;
+}
+
+.task_value {
+  margin-right: 10px;
+}
+
+.task_date {
+  margin-right: 10px;
+}
+
+.task_importance {
+  margin-right: 10px;
+}
+
 .newtask {
   border: solid;
   border-color: #cccccc;
