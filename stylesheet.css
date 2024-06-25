@@ -24,8 +24,14 @@ header {
   border: solid;
   border-color: #cccccc;
   border-radius: 5px;
-  width: 200px;
+  width: 15%;
   margin-bottom: 10px;
+}
+
+.task_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 footer {
