@@ -25,7 +25,9 @@ header {
   border-color: #cccccc;
   border-radius: 5px;
   width: 15%;
+  margin-left: 10px;
   margin-bottom: 10px;
+  padding-left: 10px;
 }
 
 .task_list {
