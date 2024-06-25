@@ -16,8 +16,16 @@ header {
 
 .header-title {
     padding: 30px 0;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
+}
+
+.newtask {
+    border: solid;
+    border-color: #cccccc;
+    border-radius: 5px;
+    width: 200px;
+    margin-bottom: 10px;
 }
 
 footer  {

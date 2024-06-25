@@ -11,20 +11,32 @@
             <div class="header-list">
                 <ul>
                     <a href="#" class="home">ホーム</a>
-                    <a href="#" class="about-application">このアプリについて</a>
+                    <a href="about.html" class="about-application">このアプリについて</a>
                 </ul>
             </div>
         </header>
         <main>
             <div class="main-add-task">
                 <h1>タスクを追加する</h1>
+                <form>
+                    <input class="task_value" placeholder="タスク名" type="text"/>
+                    <input class="task_date" type="date"/>
+                    <select class="task_importance">
+                        <option>高</option>
+                        <option>中</option>
+                        <option>低</option>
+                    </select>
+                    <button class="task_submit" type="button">追加</button>
+                </form>
             </div>
             <div class="main-task-list">
                 <h1>タスクリスト</h1>
+                <div class="task_list"></div>
             </div>
         </main>
         <footer>
             <p>© 2024 タスク管理アプリ</p>
         </footer>
+        <script src="./task_add.js"></script>    
     </body>
 </html>
