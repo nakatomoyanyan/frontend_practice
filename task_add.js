@@ -23,7 +23,12 @@ taskSubmit.addEventListener('click', () => {
     completeButton.innerText = '完了にする';
     newTask.appendChild(completeButton);
     completeButton.addEventListener('click', () => {
-      newTask.classList.add('is_complete');
+      newTask.classList.toggle('is_complete');
+      if (completeButton.innerText == '完了にする') {
+        completeButton.innerText = '元に戻す';
+      } else {
+        completeButton.innerText = '完了にする';
+      }
     });
     let removeButton = document.createElement('button');
     removeButton.classList.add('remove_button');
