@@ -18,6 +18,14 @@ taskSubmit.addEventListener('click', () => {
         <p>期限日:${taskDate.value}</p>
         <p>優先度:${taskImportance.value}</p>
     `;
+    let removeButton = document.createElement('button');
+    removeButton.classList.add('remove_button');
+    removeButton.innerText = '削除する';
+    newTask.appendChild(removeButton);
+    removeButton.addEventListener('click', () => {
+      window.alert('本当に削除しますか？');
+      taskList.removeChild(newTask);
+    });
     //タスク入力フォームを初期化
     taskSubmit.type = 'button';
     taskValue.value = '';
