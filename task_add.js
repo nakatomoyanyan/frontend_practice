@@ -35,7 +35,7 @@ taskSubmit.addEventListener('click', () => {
     removeButton.innerText = '削除する';
     newTask.appendChild(removeButton);
     removeButton.addEventListener('click', () => {
-      window.alert('本当に削除しますか？');
+      window.confirm('本当に削除しますか？');
       taskList.removeChild(newTask);
     });
     //タスク入力フォームを初期化
