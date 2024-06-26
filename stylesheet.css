@@ -66,6 +66,14 @@ form {
   width: 80px;
 }
 
+.complete_button {
+  margin-right: 5px;
+}
+
+.is_complete {
+  background-color: #d4f8d4;
+}
+
 footer {
   background-color: #333;
   color: white;

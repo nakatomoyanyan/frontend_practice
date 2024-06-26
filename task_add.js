@@ -18,6 +18,13 @@ taskSubmit.addEventListener('click', () => {
         <p>期限日:${taskDate.value}</p>
         <p>優先度:${taskImportance.value}</p>
     `;
+    let completeButton = document.createElement('button');
+    completeButton.classList.add('complete_button');
+    completeButton.innerText = '完了にする';
+    newTask.appendChild(completeButton);
+    completeButton.addEventListener('click', () => {
+      newTask.classList.add('is_complete');
+    });
     let removeButton = document.createElement('button');
     removeButton.classList.add('remove_button');
     removeButton.innerText = '削除する';
