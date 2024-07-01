@@ -14,8 +14,6 @@ function initialization() {
 function removeIvent(newTask) {
   if (window.confirm('本当に削除しますか？')) {
     taskList.removeChild(newTask);
-  } else {
-  }
 }
 
 function completeIvent(newTask, completeButton) {
