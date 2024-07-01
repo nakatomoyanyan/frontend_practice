@@ -27,35 +27,34 @@ function completeIvent(newTask, completeButton) {
 
 //追加ボタンをクリックした時の動作(タスク一覧にタスクを追加)
 taskSubmit.addEventListener('click', () => {
-  if (taskValue.value !== '' && taskDate.value !== '') {
-    //タスク作成
-    let newTask = document.createElement('div');
-    newTask.classList.add('newtask'); //クラス名を追加
-    taskList.appendChild(newTask);
-    //タスクの中身を追加
-    newTask.innerHTML = `
-        <p>${taskValue.value}</p>
-        <p>期限日:${taskDate.value}</p>
-        <p>優先度:${taskImportance.value}</p>
-    `;
-    let completeButton = document.createElement('button');
-    completeButton.classList.add('complete_button');
-    completeButton.innerText = '完了にする';
-    newTask.appendChild(completeButton);
-    completeButton.addEventListener('click', () => {
-      completeIvent(newTask, completeButton);
-    });
-    let removeButton = document.createElement('button');
-    removeButton.classList.add('remove_button');
-    removeButton.innerText = '削除する';
-    newTask.appendChild(removeButton);
-    removeButton.addEventListener('click', () => {
-      removeIvent(newTask);
-    });
-    //タスク入力フォームを初期化
-    taskSubmit.type = 'button';
-    initialization();
-  } else {
-    taskSubmit.type = 'submit';
+  if (taskValue.value === '' || taskDate.value === '') {
+    return
   }
+  //タスク作成
+  let newTask = document.createElement('div');
+  newTask.classList.add('newtask'); //クラス名を追加
+  taskList.appendChild(newTask);
+  //タスクの中身を追加
+  newTask.innerHTML = `
+      <p>${taskValue.value}</p>
+      <p>期限日:${taskDate.value}</p>
+      <p>優先度:${taskImportance.value}</p>
+  `;
+  let completeButton = document.createElement('button');
+  completeButton.classList.add('complete_button');
+  completeButton.innerText = '完了にする';
+  newTask.appendChild(completeButton);
+  completeButton.addEventListener('click', () => {
+    completeIvent(newTask, completeButton);
+  });
+  let removeButton = document.createElement('button');
+  removeButton.classList.add('remove_button');
+  removeButton.innerText = '削除する';
+  newTask.appendChild(removeButton);
+  removeButton.addEventListener('click', () => {
+    removeIvent(newTask);
+  });
+  //タスク入力フォームを初期化
+  taskSubmit.type = 'button';
+  initialization();
 });
