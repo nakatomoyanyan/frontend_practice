@@ -74,6 +74,10 @@ form {
   margin-right: 5px;
 }
 
+.not_complete_button{
+    margin-right: 5px;
+}
+
 .is_complete {
   background-color: #d4f8d4;
 }

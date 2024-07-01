@@ -5,24 +5,52 @@ let taskImportance = document.querySelector('.task_importance'); //タスクの�
 let taskSubmit = document.querySelector('.task_submit'); //追加ボタンのクリックを確認
 let taskList = document.querySelector('.task_list');
 
+
+
 function initialization() {
   taskValue.value = '';
   taskDate.value = '';
   taskImportance.value = '高';
 }
 
-function removeEvent(newTask) {
-  if (window.confirm('本当に削除しますか？')) {
-    taskList.removeChild(newTask);
-}}
+function addCompleteButton(newTask) {
+  let completeButton = document.createElement('button');
+  completeButton.classList.add('complete_button');
+  completeButton.innerText = '完了にする';
+  let newTaskElement = document.querySelector('.newtask');
+  let removeButtonElement = document.querySelector('.remove_button');
+  newTaskElement.insertBefore(completeButton,removeButtonElement);
+  completeButton.addEventListener('click', () => {
+    newTask.classList.toggle('is_complete');
+    newTask.removeChild(completeButton);
+    addNotCompleteButton(newTask);
+  });
+  
+}
 
-function completeEvent(newTask, completeButton) {
-  newTask.classList.toggle('is_complete');
-  if (completeButton.innerText == '完了にする') {
-    completeButton.innerText = '元に戻す';
-  } else {
-    completeButton.innerText = '完了にする';
-  }
+function addNotCompleteButton(newTask) {
+  let notCompleteButton = document.createElement('button');
+  notCompleteButton.classList.add('not_complete_button');
+  notCompleteButton.innerText = '元に戻す';
+  let newTaskElement = document.querySelector('.newtask');
+  let removeButtonElement = document.querySelector('.remove_button');
+  newTaskElement.insertBefore(notCompleteButton,removeButtonElement);
+  notCompleteButton.addEventListener('click', () => {
+    newTask.classList.toggle('is_complete');
+    newTask.removeChild(notCompleteButton);
+    addCompleteButton(newTask);
+  });
+}
+
+function addRemoveButton(newTask) {
+  let removeButton = document.createElement('button');
+  removeButton.classList.add('remove_button');
+  removeButton.innerText = '削除する';
+  newTask.appendChild(removeButton);
+  removeButton.addEventListener('click', () => {
+    if (window.confirm('本当に削除しますか？')) {
+      taskList.removeChild(newTask);
+  }});
 }
 
 //追加ボタンをクリックした時の動作(タスク一覧にタスクを追加)
@@ -40,22 +68,8 @@ taskSubmit.addEventListener('click', () => {
       <p>期限日:${taskDate.value}</p>
       <p>優先度:${taskImportance.value}</p>
   `;
-  let completeButton = document.createElement('button');
-  completeButton.classList.add('complete_button');
-  completeButton.innerText = '完了にする';
-  newTask.appendChild(completeButton);
-  completeButton.addEventListener('click', () => {
-    completeEvent
-  (newTask, completeButton);
-  });
-  let removeButton = document.createElement('button');
-  removeButton.classList.add('remove_button');
-  removeButton.innerText = '削除する';
-  newTask.appendChild(removeButton);
-  removeButton.addEventListener('click', () => {
-    removeEvent
-  (newTask);
-  });
+  addRemoveButton(newTask);
+  addCompleteButton(newTask);
   //タスク入力フォームを初期化
   taskSubmit.type = 'button';
   initialization();
