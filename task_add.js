@@ -45,7 +45,7 @@ taskSubmit.addEventListener('click', (event) => {
   taskList.appendChild(newTask);
   //タスクの中身を追加
   newTask.innerHTML = `
-      <p>${taskValue.value}</p>
+      <p class="task_value">${taskValue.value}</p>
       <p>期限日:${taskDate.value}</p>
       <p>優先度:${taskImportance.value}</p>
       <button class="complete">完了にする</button>

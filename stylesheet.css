@@ -44,7 +44,7 @@ form {
   padding-left: 10px;
 }
 
-.newtask.is_complete p:first-child {
+.newtask.is_complete .task_value {
   text-decoration: line-through;
 }
 
