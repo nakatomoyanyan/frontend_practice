@@ -54,17 +54,8 @@ form {
   flex-wrap: wrap;
 }
 
-.remove_button {
-  height: 30px;
-  width: 80px;
-}
-
-.complete_button {
-  margin-right: 5px;
-}
-
-.not_complete_button{
-    margin-right: 5px;
+.hidden_button{
+    display: none;
 }
 
 .is_complete {
