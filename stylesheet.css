@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 header {
   background-color: #333;
   color: white;
@@ -20,12 +24,42 @@ header {
   font-weight: bold;
 }
 
+main {
+  margin-bottom: 100px;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 .newtask {
   border: solid;
   border-color: #cccccc;
   border-radius: 5px;
-  width: 200px;
+  width: 15%;
+  margin-left: 10px;
   margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.newtask.is_complete .task_value {
+  text-decoration: line-through;
+}
+
+.task_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.hidden_button{
+    display: none;
+}
+
+.is_complete {
+  background-color: #d4f8d4;
 }
 
 footer {
@@ -33,4 +67,37 @@ footer {
   color: white;
   text-align: center;
   padding: 20px 0;
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
+
+@media (max-width: 600px) {
+    form {
+      flex-direction: column;
+    }
+    .task_value {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .task_date {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .task_importance {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .task_list {
+      flex-direction: column;
+    }
+    .newtask {
+      width: 100%;
+      margin-left: none;
+      margin: auto 0;
+      margin-bottom: 10px;
+    }
+  }
+  
