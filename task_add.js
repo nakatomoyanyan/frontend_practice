@@ -1,3 +1,28 @@
+let url = 'http://localhost:2000/tasks' 
+async function readDbJSON(url) {
+    let response = await fetch(url)
+    let tasks = await response.json()
+    for (task of tasks){
+      let newTask = document.createElement('div');
+      newTask.classList.add('newtask'); //クラス名を追加
+      taskList.appendChild(newTask);
+      //タスクの中身を追加
+      newTask.innerHTML = `
+          <p class="task_value">${task['task_title']}</p>
+          <p>期限日:${task['task_limit']}</p>
+          <p>優先度:${task['task_importance']}</p>
+          <button class="complete">完了にする</button>
+          <button class="not_complete hidden_button">元に戻す</button>
+          <button class="remove">削除する</button>
+      `;
+      addCompleteEvent(newTask);
+      addNotCompleteEvent(newTask);
+      addRemoveEvent(newTask);
+    }
+   
+}
+readDbJSON(url)
+
 //入力内容を取得
 let taskValue = document.querySelector('.task_value'); //タスクの名前を取得
 let taskDate = document.querySelector('.task_date'); //タスクの期日を取得
