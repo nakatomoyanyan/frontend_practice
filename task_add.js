@@ -21,6 +21,25 @@ async function readDbJSON(url) {
     }
    
 }
+
+
+async function addTaskToDbJSON(url,taskTitle,taskLimit,taskIMportance) {
+  let response = await fetch(url);
+  let tasks = await response.json();
+  let addData = JSON.stringify({
+    "id": JSON.stringify(Number(tasks.at(-1).id) + 1),
+    "task_title": JSON.stringify(taskTitle),
+    "task_importance": JSON.stringify(taskIMportance),
+    "task_limit": JSON.stringify(taskLimit)
+  });
+
+  let result = await fetch(url,{
+    method: "POST",
+    body: addData
+  })
+  console.log(tasks);
+}
+
 readDbJSON(url)
 
 //入力内容を取得
@@ -77,9 +96,13 @@ taskSubmit.addEventListener('click', (event) => {
       <button class="not_complete hidden_button">元に戻す</button>
       <button class="remove">削除する</button>
   `;
+  taskTitle = taskValue.value
+  taskLimit = taskDate.value
+  taskIMportance = taskImportance.value
   addCompleteEvent(newTask);
   addNotCompleteEvent(newTask);
   addRemoveEvent(newTask);
+  addTaskToDbJSON(url,taskTitle,taskLimit,taskIMportance);
   //タスク入力フォームを初期化
   event.preventDefault();//reqiredの挙動を止める
   document.taskForm.reset();
