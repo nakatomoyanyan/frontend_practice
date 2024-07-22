@@ -1,10 +1,11 @@
 let url = 'http://localhost:2000/tasks' 
-async function readDbJSON(url) {
-    let response = await fetch(url)
-    let tasks = await response.json()
+async function createTaskFromDbJSON(url) {
+    let response = await fetch(url);
+    let tasks = await response.json();
     for (task of tasks){
       let newTask = document.createElement('div');
       newTask.classList.add('newtask'); //クラス名を追加
+      newTask.id = task.id;
       taskList.appendChild(newTask);
       //タスクの中身を追加
       newTask.innerHTML = `
@@ -21,7 +22,6 @@ async function readDbJSON(url) {
     }
    
 }
-
 
 async function addTaskToDbJSON(url,taskTitle,taskLimit,taskIMportance) {
   let response = await fetch(url);
@@ -40,7 +40,21 @@ async function addTaskToDbJSON(url,taskTitle,taskLimit,taskIMportance) {
   console.log(tasks);
 }
 
-readDbJSON(url)
+async function readDbJSON(url) {
+  let response = await fetch(url)
+  let tasks = await response.json()
+  return String(Number(tasks.at(-1).id) + 1);
+}
+
+async function removeTaskFromDbJSON(url,newTask) {
+  let removeTaskID = newTask.id;
+  let deleteTaskURL = url + '/' + removeTaskID;
+  let result = await fetch(deleteTaskURL,{
+    method: "DELETE",
+  })
+}
+
+createTaskFromDbJSON(url)
 
 //入力内容を取得
 let taskValue = document.querySelector('.task_value'); //タスクの名前を取得
@@ -74,6 +88,7 @@ function addRemoveEvent(newTask){
   removeButton.addEventListener('click', () => {
     if (window.confirm('本当に削除しますか？')) {
       taskList.removeChild(newTask);
+      removeTaskFromDbJSON(url,newTask);
   }});
 }
 
@@ -86,6 +101,8 @@ taskSubmit.addEventListener('click', (event) => {
   //タスク作成
   let newTask = document.createElement('div');
   newTask.classList.add('newtask'); //クラス名を追加
+  let addId = readDbJSON(url);
+  newTask.setAttribute("id",addId);
   taskList.appendChild(newTask);
   //タスクの中身を追加
   newTask.innerHTML = `
