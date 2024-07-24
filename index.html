@@ -32,7 +32,11 @@
             <option>中</option>
             <option>低</option>
           </select>
-          <button class="task_submit" type="submit">追加</button>
+          <button class="task_submit" type="button">追加</button>
+          <select class="sort_by_importance">
+            <option class="sort_task_asc">高い順</option>
+            <option class="sort_task_desc">低い順</option>
+          </select>
         </form>
       </div>
       <div class="main-task-list">
@@ -43,6 +47,7 @@
     <footer>
       <p>© 2024 タスク管理アプリ</p>
     </footer>
-    <script src="./task_add.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="./task_add.js" type="module"></script>
   </body>
 </html>
