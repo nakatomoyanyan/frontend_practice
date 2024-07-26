@@ -1,15 +1,15 @@
 import { createTaskFromDbJSON } from "./create_task_from_json.js";
-let url = 'http://localhost:2000/tasks';
-let taskValue = document.querySelector('.task_value');
-let taskDate = document.querySelector('.task_date');
-let taskImportance = document.querySelector('.task_importance');
-let taskSubmit = document.querySelector('.task_submit');
-let taskList = document.querySelector('.task_list');
-let sort_by_importance = document.querySelector('.sort_by_importance');
+const URL = 'http://localhost:2000/tasks';
+const taskValue = document.querySelector('.task_value');
+const taskDate = document.querySelector('.task_date');
+const taskImportance = document.querySelector('.task_importance');
+const taskSubmit = document.querySelector('.task_submit');
+const taskList = document.querySelector('.task_list');
+const sort_by_importance = document.querySelector('.sort_by_importance');
 
 function addCompleteEvent(newTask){
-  let completeButton = newTask.querySelector('.complete');
-  let notCompleteButton = newTask.querySelector('.not_complete');
+  const completeButton = newTask.querySelector('.complete');
+  const notCompleteButton = newTask.querySelector('.not_complete');
   completeButton.addEventListener('click',()=>{
     completeButton.classList.add('hidden_button');
     notCompleteButton.classList.remove('hidden_button');
@@ -18,8 +18,8 @@ function addCompleteEvent(newTask){
 }
 
 function addNotCompleteEvent(newTask){
-  let completeButton = newTask.querySelector('.complete');
-  let notCompleteButton = newTask.querySelector('.not_complete');
+  const completeButton = newTask.querySelector('.complete');
+  const notCompleteButton = newTask.querySelector('.not_complete');
   notCompleteButton.addEventListener('click',()=>{
     notCompleteButton.classList.add('hidden_button');
     completeButton.classList.remove('hidden_button');
@@ -28,7 +28,7 @@ function addNotCompleteEvent(newTask){
 }
 
 function addRemoveEvent(newTask){
-  let removeButton = newTask.querySelector('.remove');
+  const removeButton = newTask.querySelector('.remove');
   removeButton.addEventListener('click', () => {
     if (window.confirm('本当に削除しますか？')) {
       taskList.removeChild(newTask);
@@ -36,17 +36,17 @@ function addRemoveEvent(newTask){
   }});
 }
 
-async function removeTaskFromDbJSON(url,newTask) {
-  let removeTaskID = newTask.id;
-  let deleteTaskURL = url + '/' + removeTaskID;
-  let result = await fetch(deleteTaskURL,{
+async function removeTaskFromDbJSON(URL,newTask) {
+  const removeTaskID = newTask.id;
+  const deleteTaskURL = URL + '/' + removeTaskID;
+  const result = await fetch(deleteTaskURL,{
     method: "DELETE",
   })
 };
 
-async function addTaskToDbJSON(url,taskTitle,taskLimit,taskImportance) {
-  let response = await fetch(url);
-  let tasks = await response.json();
+async function addTaskToDbJSON(URL,taskTitle,taskLimit,taskImportance) {
+  const response = await fetch(URL);
+  const tasks = await response.json();
   let taskImportanceValue = 0;
   if (taskImportance === "高"){
     taskImportanceValue = 3;
@@ -55,7 +55,7 @@ async function addTaskToDbJSON(url,taskTitle,taskLimit,taskImportance) {
   }else{
     taskImportanceValue = 1;
   };
-  let addData = JSON.stringify({
+  const addData = JSON.stringify({
     "id": JSON.stringify(Number(tasks.at(-1).id) + 1),
     "task_title": taskTitle,
     "task_importance": taskImportance,
@@ -63,14 +63,14 @@ async function addTaskToDbJSON(url,taskTitle,taskLimit,taskImportance) {
     "task_limit": taskLimit
   });
 
-  let result = await fetch(url,{
+  const result = await fetch(URL,{
     method: "POST",
     body: addData
   })
 };
 
-async function sortTaskByASC(url) {
-  let response = await fetch(url);
+async function sortTaskByASC(URL) {
+  const response = await fetch(URL);
   let tasks = await response.json();
   tasks = _.orderBy(tasks,["task_importance_value","task_limit"],["asc","asc"]);
   taskList.innerHTML = '';
@@ -94,8 +94,8 @@ async function sortTaskByASC(url) {
   }
 }
 
-async function sortTaskByDESC(url) {
-  let response = await fetch(url);
+async function sortTaskByDESC(URL) {
+  const response = await fetch(URL);
   let tasks = await response.json();
   tasks = _.orderBy(tasks,["task_importance_value","task_limit"],["desc","asc"]);
 
@@ -120,25 +120,25 @@ async function sortTaskByDESC(url) {
   }
 }
 
-createTaskFromDbJSON(url);
+createTaskFromDbJSON(URL);
 
 //追加ボタンをクリックした時の動作(タスク一覧にタスクを追加)
 taskSubmit.addEventListener('click', (event) => {
   if (taskValue.value === '' || taskDate.value === '') {
     return
   }
-  let taskTitle = taskValue.value;
-  let taskLimit = taskDate.value;
-  let taskIMportance = taskImportance.value;
-  addTaskToDbJSON(url,taskTitle,taskLimit,taskIMportance);
-  createTaskFromDbJSON(url);
+  const taskTitle = taskValue.value;
+  const taskLimit = taskDate.value;
+  const taskIMportance = taskImportance.value;
+  addTaskToDbJSON(URL,taskTitle,taskLimit,taskIMportance);
+  createTaskFromDbJSON(URL);
   event.preventDefault();//reqiredの挙動を止める
   document.taskForm.reset();
 });
 sort_by_importance.addEventListener('change', (event) => {
  if (event.target.value === 'desc'){
-  sortTaskByDESC(url);
+  sortTaskByDESC(URL);
  }else{
-  sortTaskByASC(url);
+  sortTaskByASC(URL);
  };
 });

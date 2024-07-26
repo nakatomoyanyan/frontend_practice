@@ -1,9 +1,9 @@
-let taskList = document.querySelector('.task_list');
-let url = 'http://localhost:2000/tasks';
+const taskList = document.querySelector('.task_list');
+const URL = 'http://localhost:2000/tasks';
 
 function addCompleteEvent(newTask){
-  let completeButton = newTask.querySelector('.complete');
-  let notCompleteButton = newTask.querySelector('.not_complete');
+  const completeButton = newTask.querySelector('.complete');
+  const notCompleteButton = newTask.querySelector('.not_complete');
   completeButton.addEventListener('click',()=>{
     completeButton.classList.add('hidden_button');
     notCompleteButton.classList.remove('hidden_button');
@@ -12,8 +12,8 @@ function addCompleteEvent(newTask){
 };
   
 function addNotCompleteEvent(newTask){
-  let completeButton = newTask.querySelector('.complete');
-  let notCompleteButton = newTask.querySelector('.not_complete');
+  const completeButton = newTask.querySelector('.complete');
+  const notCompleteButton = newTask.querySelector('.not_complete');
   notCompleteButton.addEventListener('click',()=>{
     notCompleteButton.classList.add('hidden_button');
     completeButton.classList.remove('hidden_button');
@@ -22,24 +22,24 @@ function addNotCompleteEvent(newTask){
 };
   
 function addRemoveEvent(newTask){
-  let removeButton = newTask.querySelector('.remove');
+  const removeButton = newTask.querySelector('.remove');
   removeButton.addEventListener('click', () => {
     if (window.confirm('本当に削除しますか？')) {
       taskList.removeChild(newTask);
-      removeTaskFromDbJSON(url,newTask);
+      removeTaskFromDbJSON(URL,newTask);
   }});
 };
 
-async function removeTaskFromDbJSON(url,newTask) {
-  let removeTaskID = newTask.id;
-  let deleteTaskURL = url + '/' + removeTaskID;
-  let result = await fetch(deleteTaskURL,{
+async function removeTaskFromDbJSON(URL,newTask) {
+  const removeTaskID = newTask.id;
+  const deleteTaskURL = URL + '/' + removeTaskID;
+  const result = await fetch(deleteTaskURL,{
     method: "DELETE",
   })
 };
 
-export async function createTaskFromDbJSON(url) {
-  let response = await fetch(url);
+export async function createTaskFromDbJSON(URL) {
+  const response = await fetch(URL);
   let tasks = await response.json();
   for (let task of tasks){
     let newTask = document.createElement('div');
