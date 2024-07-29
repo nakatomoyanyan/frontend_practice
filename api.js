@@ -92,51 +92,18 @@ async function sortTaskByASC() {
   const response = await fetch(ENDPOINT_URL);
   let tasks = await response.json();
   tasks = _.orderBy(tasks,["task_importance_value","task_limit"],["asc","asc"]);
-  taskList.innerHTML = '';
   for (let task of tasks){
-    let newTask = document.createElement('div');
-    newTask.classList.add('newtask'); //クラス名を追加
-    newTask.id = task.id;
-    taskList.appendChild(newTask);
-    //タスクの中身を追加
-    newTask.innerHTML = `
-        <p class="task_value">${task['task_title']}</p>
-        <p>期限日:${task['task_limit']}</p>
-        <p>優先度:${task['task_importance']}</p>
-        <button class="complete">完了にする</button>
-        <button class="not_complete hidden_button">元に戻す</button>
-        <button class="remove">削除する</button>
-    `;
-    addCompleteEvent(newTask);
-    addNotCompleteEvent(newTask);
-    addRemoveEvent(newTask);
-  }
-}
+    taskList.appendChild(taskList.removeChild(document.getElementById(`${task.id}`)));
+  };
+};
 
 async function sortTaskByDESC() {
   const response = await fetch(ENDPOINT_URL);
   let tasks = await response.json();
   tasks = _.orderBy(tasks,["task_importance_value","task_limit"],["desc","asc"]);
-
-  taskList.innerHTML = '';
   for (let task of tasks){
-    let newTask = document.createElement('div');
-    newTask.classList.add('newtask'); //クラス名を追加
-    newTask.id = task.id;
-    taskList.appendChild(newTask);
-    //タスクの中身を追加
-    newTask.innerHTML = `
-        <p class="task_value">${task['task_title']}</p>
-        <p>期限日:${task['task_limit']}</p>
-        <p>優先度:${task['task_importance']}</p>
-        <button class="complete">完了にする</button>
-        <button class="not_complete hidden_button">元に戻す</button>
-        <button class="remove">削除する</button>
-    `;
-    addCompleteEvent(newTask);
-    addNotCompleteEvent(newTask);
-    addRemoveEvent(newTask);
-  }
-}
+    taskList.appendChild(taskList.removeChild(document.getElementById(`${task.id}`)));
+  };
+};
 
 export {createTaskFromDbJSON, removeTaskFromDbJSON, addTaskToDbJSON, sortTaskByASC, sortTaskByDESC};
