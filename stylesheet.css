@@ -54,8 +54,8 @@ form {
   flex-wrap: wrap;
 }
 
-.hidden_button{
-    display: none;
+.hidden_button {
+  display: none;
 }
 
 .is_complete {
@@ -75,29 +75,28 @@ footer {
 }
 
 @media (max-width: 600px) {
-    form {
-      flex-direction: column;
-    }
-    .task_value {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    .task_date {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    .task_importance {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    .task_list {
-      flex-direction: column;
-    }
-    .newtask {
-      width: 100%;
-      margin-left: none;
-      margin: auto 0;
-      margin-bottom: 10px;
-    }
+  form {
+    flex-direction: column;
   }
-  
+  .task_value {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .task_date {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .task_importance {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .task_list {
+    flex-direction: column;
+  }
+  .newtask {
+    width: 100%;
+    margin-left: none;
+    margin: auto 0;
+    margin-bottom: 10px;
+  }
+}
